@@ -17,6 +17,7 @@ $ sudo ifconfig br1 10.250.0.1/24
 $ sudo ifconfig br1 up
 ```
 
+
 - Download vEOS image from [arista](https://www.arista.com/en/support/software-download).
 - Copy below image files to ```~/veos-vm/images``` on your testbed server.
    - ```Aboot-veos-serial-8.0.0.iso```
