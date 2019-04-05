@@ -117,6 +117,44 @@ From now on, all steps are running inside the *sonic-mgmt* docker.
 Put the private key inside the sonic-mgmt docker container. Make sure you can login into box using 
 ```ssh yourusername@172.17.0.1``` without any password prompt inside the docker container.
 
+## Configure veos.vtb file as follows
+
+```
+[vm_host_1]
+STR-ACS-VSERV-01 ansible_host=172.17.0.1 ansible_user=administrator
+
+[vm_host:children]
+vm_host_1
+
+[vms_1]
+VM0400 ansible_host=10.16.207.51
+VM0401 ansible_host=10.16.207.52
+VM0402 ansible_host=10.16.207.53
+VM0403 ansible_host=10.16.207.54
+
+
+[eos:children]
+vms_1
+
+## The groups below are helper to limit running playbooks to server_1, server_2 or server_3 only
+[server_1:children]
+vm_host_1
+vms_1
+
+[server_1:vars]
+host_var_file=host_vars/STR-ACS-VSERV-01.yml
+
+[servers:children]
+server_1
+
+[servers:vars]
+topologies=['t1', 't1-lag', 't1-64-lag', 't0', 't0-16', 't0-56', 't0-52', 'ptf32', 'ptf64', 't0-64', 't0-64-32', 't0-116']
+
+[sonic]
+vlab-01 ansible_host=10.16.207.80 type=kvm hwsku=Force10-S6000
+vlab-02 ansible_host=10.16.207.81 type=kvm hwsku=Force10-S6100
+```
+
 ## Setup Arista VMs in the server
 
 ```
