@@ -133,7 +133,7 @@ root@ubuntu:~/.ssh#
 
 ### Configure veos.vtb file 
 
--Modify veos.vtb file to use ansible user and ansible host ip address details.
+- Modify veos.vtb file to use ansible user and ansible host ip address details.
 
 ```
 [vm_host_1]
