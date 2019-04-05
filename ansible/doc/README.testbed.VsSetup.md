@@ -171,6 +171,47 @@ vlab-01 ansible_host=10.16.207.80 type=kvm hwsku=Force10-S6000
 vlab-02 ansible_host=10.16.207.81 type=kvm hwsku=Force10-S6100
 ```
 
+### Configure STR-ACS-VSERV-01.yml file
+```
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/host_vars$ pwd
+/var/johnar/sonic-mgmt/ansible/host_vars
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/host_vars$ cat STR-ACS-VSERV-01.yml
+mgmt_bridge: br1
+mgmt_prefixlen: 24
+mgmt_gw: 172.17.0.1
+vm_mgmt_gw: 172.17.0.1
+
+internal_mgmt_port: True
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/host_vars$
+```
+
+### Configure main.yml file
+```
+/var/johnar/sonic-mgmt/ansible/group_vars/vm_host
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/group_vars/vm_host$ cat main.yml
+root_path: /home/administrator
+vm_images_url: https://acsbe.blob.core.windows.net/vmimages
+cd_image_filename: Aboot-veos-serial-8.0.0.iso
+hdd_image_filename: vEOS-lab-4.20.10M.vmdk
+skip_image_downloading: true
+
+vm_console_base: 7000
+memory: 2097152
+max_fp_num: 4
+```
+### Configure creds.yml file
+```
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/group_vars/vm_host$
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/group_vars/vm_host$ cat creds.yml
+---
+ansible_user: root
+ansible_password: force10
+ansible_sudo_pass: force10
+
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible/group_vars/vm_host$
+
+```
+
 ## Setup Arista VMs in the server
 
 ```
