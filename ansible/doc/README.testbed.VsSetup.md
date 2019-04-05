@@ -117,7 +117,22 @@ From now on, all steps are running inside the *sonic-mgmt* docker.
 Put the private key inside the sonic-mgmt docker container. Make sure you can login into box using 
 ```ssh yourusername@172.17.0.1``` without any password prompt inside the docker container.
 
-## Configure veos.vtb file as follows
+-Create a ssh public key from docker sonic mgmt container and copy it to authorized_keys file in the server.
+johnar@9cbdf85d4f63:~/sonic-mgmt/ansible$ cd ~
+johnar@9cbdf85d4f63:~$ cd ~/.ssh
+johnar@9cbdf85d4f63:~/.ssh$ ls
+authorized_keys2  config  id_rsa  id_rsa.pub
+johnar@9cbdf85d4f63:~/.ssh$ cat id_rsa.pub
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDe1SD7efOOtrI5xP6nMud7IOl4kkWniMHO/5Rl7AbmKfQ06puc/MKodd7qk5tvhnUAFO53i3QAstYURnyZPA+KY2VWe1WXUlI2hAfJdznMEw9XVkQQFf4P87pBxALdpf+ZJyxyaXD9xJl5XVlmIR3EaC43X+LNGcMS+O7tbmTu562CPZuUK3KMs5CLWTMKuDnld3uMFqaBsqdND2w9Qnt/ulFGn4fzuBiHKBGqSF5EXjx8XG5t5uoKzPb9fg6KnO2AV3rw8fnh81SaiQJ3v9AB+HVSPS/sYB0IaDvmcuH9YStDe4vhKWjOf7u1E0yFIVeHuvott7hUoXERMRiDodB9 johnar@9cbdf85d4f63
+
+root@ubuntu:~/.ssh# cat authorized_keys
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpJeV5t35DnvEpG4HgiCdHKGg5rMH+Ngm/utrPUxJ++9Zo5LyotBHt/gK/TmWEUjIbRFwJkjbJZ7c3T0Fkt5+RRlR67IDaPXvWj32RMt3B5jCV3NurYVR6BU1MOqndeptiSG6Z8Ckl09sCJkXpkUW0+iz6QeCekEwF6nq4M68LZFrIungIxY+S28R/Tu8ktQbmlq3UmOcLayFK+CDf6albfuVYIVZQ2nYMApMfkgyVW8G9uDT9jbnCheG/QUPUjgi1eaacbByvEhrlt4Jhhzqlu3nLWHJOqfjDPbmVbPgbY/4PcONqaODOsmFACv6/m7lsp691OKLL3BbeND/Aiqu7 johnar@4703be06bf1e
+root@ubuntu:~/.ssh#
+
+
+### Configure veos.vtb file 
+
+-Modify veos.vtb file to use ansible user and ansible host ip address details.
 
 ```
 [vm_host_1]
