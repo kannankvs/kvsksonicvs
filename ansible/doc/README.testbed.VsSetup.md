@@ -117,7 +117,7 @@ From now on, all steps are running inside the *sonic-mgmt* docker.
 Put the private key inside the sonic-mgmt docker container. Make sure you can login into box using 
 ```ssh yourusername@172.17.0.1``` without any password prompt inside the docker container.
 
--Create a ssh public key from docker sonic mgmt container and copy it to authorized_keys file in the server.
+- Create a ssh public key from docker sonic mgmt container and copy it to authorized_keys file in the server.
 johnar@9cbdf85d4f63:~/sonic-mgmt/ansible$ cd ~
 johnar@9cbdf85d4f63:~$ cd ~/.ssh
 johnar@9cbdf85d4f63:~/.ssh$ ls
